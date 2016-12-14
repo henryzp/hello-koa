@@ -54,10 +54,14 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-// add url-route:
-router.get('/ajax', async (ctx, next) => {
+router.get('/ajax1', async (ctx, next) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     ctx.body = {a: 1, b: 2}
+});
+
+router.get('/ajax2', async (ctx, next) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    ctx.body = {c: 3, d: 4}
 });
 
 router.get('/', async (ctx, next) => {

@@ -5,18 +5,34 @@
     <title>Koa test</title>
 </head>
 <body>
-    <button id="test">点我</button>
+
+    <button id="test1">点我1</button>
+    <button id="test2">点我2</button>
+
     <script src="js/jquery.js"></script>
     <script src="js/common.js"></script>
     <script>
-        $("#test").click(function() {
-            $.ajax({
-                url: "/ajax",
+
+        $("#test1").click(function() {
+            common.ajax({
+                url: "/ajax1",
                 success: function(data){
                     console.log(data.a);
                 }
-            })
+            }, this, false, function() {
+                alert("请求中。。。请不要频繁点击");
+            });
         })
+
+        $("#test2").click(function() {
+            common.ajax({
+                url: "/ajax2",
+                success: function(data){
+                    console.log(data.c);
+                }
+            }, this);
+        })
+
     </script>
 </body>
 </html>
