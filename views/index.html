@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Koa test</title>
+</head>
+<body>
+    <button id="test">点我</button>
+    <script src="js/jquery.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        $("#test").click(function() {
+            $.ajax({
+                url: "/ajax",
+                success: function(data){
+                    console.log(data.a);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
