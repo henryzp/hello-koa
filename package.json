@@ -1,0 +1,18 @@
+{
+  "name": "hello-koa",
+  "version": "1.0.0",
+  "main": "start.js",
+  "repository": "git@192.168.2.107:zpu/hello-koa.git",
+  "author": "小翼 <Henry_zp@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon start"
+  },
+  "dependencies": {
+    "babel-core": "6.13.2",
+    "babel-polyfill": "6.13.0",
+    "babel-preset-es2015-node6": "0.3.0",
+    "babel-preset-stage-3": "6.5.0",
+    "koa": "2.0.0"
+  }
+}
