@@ -63,8 +63,6 @@ router.get('/ajax1', async (ctx, next) => {
     ctx.body = {a: 1, b: 2}
 });
 
-
-
 router.post('/ajax2', async (ctx, next) => {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     // console.log(context.request.body);
