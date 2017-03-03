@@ -5,6 +5,8 @@ const json = require('koa-json');
 
 const staticServer = require('koa-static');
 
+const bodyParser = require('koa-bodyparser');
+
 // 注意require('koa-router')返回的是函数:
 const router = require('koa-router')();
 
@@ -44,6 +46,8 @@ var env = createEnv('views', {
 // 创建一个Koa对象表示web app本身:
 const app = new Koa();
 
+app.use(bodyParser());
+
 app.use(staticServer(__dirname + '/static'));
 
 app.use(json({ pretty: false, param: 'pretty' }));
@@ -55,13 +59,17 @@ app.use(async (ctx, next) => {
 });
 
 router.get('/ajax1', async (ctx, next) => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     ctx.body = {a: 1, b: 2}
 });
 
-router.get('/ajax2', async (ctx, next) => {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    ctx.body = {c: 3, d: 4}
+router.post('/ajax2', async (ctx, next) => {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+    // console.log(context.request.body);
+    // console.log(ctx.request.body);
+    // console.log(ctx.request.body);
+    ctx.status = 500;
+    ctx.body = "内部报错";
 });
 
 router.get('/', async (ctx, next) => {
@@ -72,5 +80,5 @@ router.get('/', async (ctx, next) => {
 app.use(router.routes());
 
 // 在端口3000监听:
-app.listen(3000);
-console.log('app started at port 3000...');
+app.listen(3001);
+console.log('app started at port 3001...');

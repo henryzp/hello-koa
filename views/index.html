@@ -26,12 +26,63 @@
 
         $("#test2").click(function() {
             common.ajax({
+                type: "post",
                 url: "/ajax2",
+                header: {
+                    "Content-Type": "application/json"
+                },
+                data: {
+                    a: 1,
+                    b: 2
+                },
                 success: function(data){
                     console.log(data.c);
+                },
+                error: function() {
+                    alert("出错了");
                 }
-            }, this);
+            }, document.getElementById("test2"));
         })
+
+        function timeout(ms, promise) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    reject(new Error("timeout"))
+                }, ms)
+                promise.then(resolve, reject)
+            })
+        }
+
+//        timeout(2000, fetch("/ajax2", {
+//            credentials: 'include',
+//            method: "post",
+//            headers: {
+//                "Content-Type": "application/json"
+//            },
+//            body: JSON.stringify({a: 1, b: 2})
+//        })).then(function(response) {
+//            return response.json();
+//        }).then(function(data) {
+//            console.log(data);
+//        }).catch(function(e) {
+//            console.log(e);
+//        });
+
+
+        var result = fetch("/ajax2", {
+            credentials: 'include',
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({a: 1, b: 2})
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(e) {
+            console.log("出错了");
+        });
 
     </script>
 </body>
